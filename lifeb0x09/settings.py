@@ -26,13 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# add this
 #SECRET_KEY = 'django-insecure-%*pjygrg&lv@t_2%crtc@rnvr+925x%e^@4gy3ad-sd)0k1@hr'
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-%*pjygrg&lv@t_2%crtc@rnvr+925x%e^@4gy3ad-sd)0k1@hr')          
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 print(DEBUG)
+#
+
 
 ALLOWED_HOSTS = []
 
@@ -109,6 +114,8 @@ DATABASES = {
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+print(DATABASES)
 #
 
 
@@ -153,6 +160,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# add this
 django_heroku.settings(locals())
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -163,4 +171,3 @@ STATIC_URL = "/static/"
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-print(DATABASES)
