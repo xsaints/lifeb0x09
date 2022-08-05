@@ -32,6 +32,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-%*pjygrg&lv@t_
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+print(DEBUG)
 
 ALLOWED_HOSTS = []
 
@@ -98,9 +99,9 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'psql_demo',
-        'USER': 'johnv',
-        'PASSWORD': 'stjude00',
+        'NAME': os.environ.get('LB9_DB','psql_demo'),
+        'USER': os.environ.get('LB9_USER', 'johnv'),
+        'PASSWORD': os.environ.get('LB9_PW', 'stjude00'),
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -161,3 +162,5 @@ STATIC_URL = "/static/"
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+print(DATABASES)
